@@ -1,4 +1,4 @@
-import { Heart, RotateCcw, X } from "lucide-react";
+import { Heart, RotateCcw } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface ProfileData {
@@ -66,9 +66,6 @@ const ProfileCard = () => {
             aria-label="Refresh"
           >
             <RotateCcw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-          </button>
-          <button className="hover:text-hell-red transition-colors p-1" aria-label="Close">
-            <X className="w-4 h-4" />
           </button>
         </div>
       </div>
