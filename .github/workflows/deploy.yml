@@ -24,33 +24,10 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Set base path
-      id: base_path
-      run: |
-        REPO_NAME="${{ github.event.repository.name }}"
-        REPO_OWNER="${{ github.repository_owner }}"
-        echo "Repository name: $REPO_NAME"
-        echo "Repository owner: $REPO_OWNER"
-        if [ "$REPO_NAME" == "${REPO_OWNER}.github.io" ]; then
-          echo "base=/" >> $GITHUB_OUTPUT
-          echo "Detected user/organization pages repository, using base path: /"
-        else
-          echo "base=/$REPO_NAME/" >> $GITHUB_OUTPUT
-          echo "Detected project pages repository, using base path: /$REPO_NAME/"
-        fi
-        echo "Final base path: ${{ steps.base_path.outputs.base }}"
-
     - name: Build React app
-      env:
-        GITHUB_PAGES_BASE: ${{ steps.base_path.outputs.base }}
       run: |
-        echo "Building with base path: $GITHUB_PAGES_BASE"
+        echo "Building with base path: /"
         npm run build
-      
-    - name: Debug base path
-      run: |
-        echo "Base path set to: ${{ steps.base_path.outputs.base }}"
-        echo "GITHUB_PAGES_BASE env var: $GITHUB_PAGES_BASE"
       
     - name: Verify built HTML
       run: |
