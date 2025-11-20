@@ -1,11 +1,11 @@
 import { Heart, RotateCcw, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import avatar from "@/assets/avatar-hell.png";
 
 interface ProfileData {
   name: string;
   age: number;
   pronouns: string;
+  avatar?: string;
   lastUpdated: string;
   bio: string[];
   likes: string[];
@@ -80,7 +80,7 @@ const ProfileCard = () => {
               {profileData.name}
             </p>
             <img 
-              src={avatar} 
+              src={profileData.avatar || "/avatar-hell.png"} 
               alt="Profile avatar" 
               className="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-lg border-2 border-hell-red object-cover shadow-[0_0_20px_rgba(255,0,0,0.6)]"
             />
