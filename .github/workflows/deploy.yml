@@ -27,16 +27,33 @@ jobs:
     - name: Set base path
       id: base_path
       run: |
-        if [ "${{ github.repository }}" == "${{ github.repository_owner }}/${{ github.repository_owner }}.github.io" ]; then
+        REPO_NAME="${{ github.event.repository.name }}"
+        REPO_OWNER="${{ github.repository_owner }}"
+        if [ "$REPO_NAME" == "${REPO_OWNER}.github.io" ]; then
           echo "base=/" >> $GITHUB_OUTPUT
+          echo "Detected user/organization pages repository, using base path: /"
         else
-          echo "base=/${{ github.event.repository.name }}/" >> $GITHUB_OUTPUT
+          echo "base=/$REPO_NAME/" >> $GITHUB_OUTPUT
+          echo "Detected project pages repository, using base path: /$REPO_NAME/"
         fi
 
     - name: Build React app
       run: npm run build
       env:
         GITHUB_PAGES_BASE: ${{ steps.base_path.outputs.base }}
+      
+    - name: Debug base path
+      run: |
+        echo "Base path set to: ${{ steps.base_path.outputs.base }}"
+        echo "GITHUB_PAGES_BASE env var: $GITHUB_PAGES_BASE"
+      
+    - name: Verify built HTML
+      run: |
+        if [ -f "./dist/index.html" ]; then
+          echo "Checking index.html for base path references:"
+          grep -o 'src="[^"]*"' ./dist/index.html | head -5 || true
+          grep -o 'href="[^"]*"' ./dist/index.html | head -5 || true
+        fi
       
     - name: Debug build output
       run: ls -la ./build || ls -la ./dist || ls -la
