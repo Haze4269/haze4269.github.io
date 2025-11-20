@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 100% 95%;
+
+    --card: 0 0% 0% 0;
+    --card-foreground: 0 100% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 100% 95%;
+
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 20% 20%;
+    --secondary-foreground: 0 100% 95%;
+
+    --muted: 0 10% 25%;
+    --muted-foreground: 0 50% 60%;
+
+    --accent: 0 85% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 100% 40%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 50%;
+
+    --radius: 0.5rem;
+    
+    --retro-border: 0 100% 45%;
+    --retro-shadow: 0 100% 20%;
+    --hell-red: 0 100% 50%;
+    --fire-orange: 15 100% 50%;
+    --dark-red: 0 60% 30%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 100% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 100% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 100% 95%;
+
+    --primary: 0 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 20% 18%;
+    --secondary-foreground: 0 100% 95%;
+
+    --muted: 0 10% 22%;
+    --muted-foreground: 0 50% 65%;
+
+    --accent: 0 90% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 100% 45%;
+    --input: 0 0% 12%;
+    --ring: 0 100% 55%;
+    
+    --retro-border: 0 100% 50%;
+    --retro-shadow: 0 100% 15%;
+    --hell-red: 0 100% 55%;
+    --fire-orange: 15 100% 55%;
+    --dark-red: 0 60% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Courier New', 'Arial Black', sans-serif;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .retro-dashed {
+    border: 2px solid hsl(var(--retro-border));
+    box-shadow: 0 0 10px hsl(var(--hell-red) / 0.5), inset 0 0 20px hsl(var(--hell-red) / 0.1);
+  }
+  
+  @media (max-width: 640px) {
+    .retro-dashed {
+      box-shadow: 0 0 5px hsl(var(--hell-red) / 0.4), inset 0 0 10px hsl(var(--hell-red) / 0.08);
+    }
+  }
+  
+  .retro-shadow {
+    box-shadow: 0 0 20px hsl(var(--hell-red) / 0.6), 0 4px 10px rgba(0, 0, 0, 0.8);
+  }
+  
+  @media (max-width: 640px) {
+    .retro-shadow {
+      box-shadow: 0 0 10px hsl(var(--hell-red) / 0.5), 0 2px 5px rgba(0, 0, 0, 0.8);
+    }
+  }
+  
+  .neon-glow {
+    text-shadow: 0 0 10px hsl(var(--hell-red)), 0 0 20px hsl(var(--hell-red)), 0 0 30px hsl(var(--hell-red));
+  }
+  
+  @media (max-width: 640px) {
+    .neon-glow {
+      text-shadow: 0 0 5px hsl(var(--hell-red)), 0 0 10px hsl(var(--hell-red)), 0 0 15px hsl(var(--hell-red));
+    }
+  }
+}

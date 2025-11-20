@@ -1,0 +1,26 @@
+{
+  "lastUpdated": "2:24 am 11/20/2025",
+  "movies": [
+    {
+      "name": "Movie 1",
+      "genre": "Genre",
+      "description": "Description here"
+    },
+    {
+      "name": "Movie 2",
+      "genre": "Genre",
+      "description": "Description here"
+    },
+    {
+      "name": "Movie 3",
+      "genre": "Genre",
+      "description": "Description here"
+    },
+    {
+      "name": "Movie 4",
+      "genre": "Genre",
+      "description": "Description here"
+    }
+  ]
+}
+
