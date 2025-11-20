@@ -1,0 +1,26 @@
+{
+  "lastUpdated": "2:24 am 11/20/2025",
+  "games": [
+    {
+      "name": "Game 1",
+      "platform": "Platform",
+      "description": "Description here"
+    },
+    {
+      "name": "Game 2",
+      "platform": "Platform",
+      "description": "Description here"
+    },
+    {
+      "name": "Game 3",
+      "platform": "Platform",
+      "description": "Description here"
+    },
+    {
+      "name": "Game 4",
+      "platform": "Platform",
+      "description": "Description here"
+    }
+  ]
+}
+
