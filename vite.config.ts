@@ -5,26 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Determine base path for GitHub Pages
-  // For user.github.io repos, use '/', otherwise use '/repo-name/'
-  // Explicitly handle the base path to avoid double-pathing issues
-  let base = process.env.GITHUB_PAGES_BASE || '/';
-  
-  // Remove any leading/trailing slashes and normalize
-  base = base.trim();
-  if (base && base !== '/') {
-    // Ensure base starts with / and ends with /
-    base = base.startsWith('/') ? base : `/${base}`;
-    base = base.endsWith('/') ? base : `${base}/`;
-  } else {
-    base = '/';
-  }
-  
-  // Log the base path for debugging (only in build mode to avoid cluttering dev console)
-  if (mode === 'production') {
-    console.log('Vite base path configured as:', JSON.stringify(base));
-  }
-  
+  // GitHub Pages user/org site is always served from the root domain,
+  // so keep the base path fixed to '/' to avoid duplicated paths.
+  const base = "/";
+
   return {
     base: base,
     server: {
