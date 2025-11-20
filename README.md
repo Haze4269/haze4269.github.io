@@ -93,27 +93,7 @@ The favicon is the small icon that appears in browser tabs next to your site's t
    - Go to the `public` folder
    - Click "Add file" → "Upload files"
    - Upload your favicon file
-   - **Important:** Name it `favicon.ico` (or update the link in `index.html` if using a different name)
-
-3. **If using a different filename:**
-   - Go to `index.html` in the root folder
-   - Click the pencil icon to edit
-   - Find the line that says `<link rel="icon" type="image/x-icon" href="/favicon.ico" />`
-   - Change `/favicon.ico` to match your filename (e.g., `/my-favicon.png`)
-
-**Example:** If you uploaded `my-icon.ico`, the line should look like:
-```html
-<link rel="icon" type="image/x-icon" href="/my-icon.ico" />
-```
-
-**Important:** 
-- The path must start with `/` (forward slash)
-- The filename must match your uploaded file exactly
-- For `.ico` files, use `type="image/x-icon"`
-- For `.png` files, use `type="image/png"`
-- You may need to hard refresh your browser (Ctrl+F5 or Cmd+Shift+R) to see the change
-
-**Tip:** If you want to use a PNG file instead of ICO, you can! Just upload it and update the link tag in `index.html` to point to your PNG file and change the type to `image/png`.
+   - **Important:** Name it `favicon.ico`
 
 ---
 
@@ -157,5 +137,3 @@ The music player uses MP3 files. Here's how to add or remove songs:
 3. Delete the entire song block (from `{` to `},`)
 4. Make sure there's still a comma after the previous song, or remove the comma if it's the last one
 5. Save and commit
-
-**Tip:** You can also delete the MP3 file from the `public` folder if you want to free up space, but it's not required.
