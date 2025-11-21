@@ -70,7 +70,7 @@ const ProfileCard = () => {
         </div>
       </div>
       
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-[200px_1fr] gap-4">
         <div className="space-y-2">
           <div className="text-center">
             <p className="text-xs md:text-sm mb-2 font-bold uppercase tracking-wider text-hell-red">
@@ -79,7 +79,7 @@ const ProfileCard = () => {
             <img 
               src={profileData.avatar || "/avatar-hell.png"} 
               alt="Profile avatar" 
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-lg border-2 border-hell-red object-cover shadow-[0_0_20px_rgba(255,0,0,0.6)]"
+              className="w-24 h-24 md:w-28 md:h-28 mx-auto rounded-lg border-2 border-hell-red object-cover shadow-[0_0_20px_rgba(255,0,0,0.6)]"
             />
             <p className="text-xs text-muted-foreground mt-2 font-bold">
               {profileData.age} {profileData.pronouns}<br />
@@ -87,7 +87,7 @@ const ProfileCard = () => {
           </div>
         </div>
         
-        <div className="md:col-span-2 grid md:grid-cols-[1fr_auto_1fr] gap-4">
+        <div className="grid md:grid-cols-[1.2fr_auto_1fr] gap-4">
           <div className="space-y-2 text-xs md:text-sm">
             <h3 className="font-bold mb-2 uppercase text-hell-red tracking-wide py-1 md:py-2">Bio</h3>
             <p className="text-muted-foreground leading-loose font-semibold py-1 md:py-2">
