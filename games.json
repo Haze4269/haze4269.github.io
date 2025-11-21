@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "2:24 am 11/20/2025",
+  "lastUpdated": "2:24 am 11/21/2025",
   "games": [
     {
-      "name": "Game 1",
-      "platform": "Platform",
+      "name": "Marvel Rivals",
+      "platform": "Steam",
       "description": "Description here"
     },
     {
-      "name": "Game 2",
-      "platform": "Platform",
+      "name": "Gmod",
+      "platform": "Steam",
       "description": "Description here"
     },
     {
-      "name": "Game 3",
-      "platform": "Platform",
+      "name": "Sims 4",
+      "platform": "Steam/EA Games",
       "description": "Description here"
     },
     {
