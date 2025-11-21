@@ -19,16 +19,10 @@ const Shards = ({ active, onComplete }: { active: boolean; onComplete: () => voi
       const speed = 0.3 + Math.random() * 0.8; // Reduced from 0.5-1.5 to 0.3-0.8
       const rotationSpeed = (Math.random() - 0.5) * 0.1;
       
-      // Colors inspired by the images: vibrant reds, blacks, whites, dark greys
+      // Colors: red and white blocks
       const colors = [
         '#ff0000', // Bright red
-        '#ff3300', // Fire orange-red
-        '#cc0000', // Dark red
-        '#000000', // Black
         '#ffffff', // White
-        '#333333', // Dark grey
-        '#1a0000', // Very dark red
-        '#ff6600', // Orange
       ];
       const color = new THREE.Color(colors[Math.floor(Math.random() * colors.length)]);
       
@@ -72,17 +66,22 @@ const Shards = ({ active, onComplete }: { active: boolean; onComplete: () => voi
       const { angle, speed, rotationSpeed, initialX, initialY, initialZ, size } = particle;
       
       if (time < 0.3) {
-        // Initial gathering/swirl phase - particles converge
+        // Initial gathering/swirl phase - particles converge with pulsing
         const gatherProgress = time / 0.3;
         const gatherEase = 1 - Math.pow(1 - gatherProgress, 3);
+        
+        // Pulsing effect: faster pulses as we approach explosion
+        const pulseSpeed = 8 + gatherProgress * 12; // Increases from 8 to 20
+        const pulseIntensity = 0.15 + gatherProgress * 0.25; // Increases from 0.15 to 0.4
+        const pulse = 1 + Math.sin(time * pulseSpeed) * pulseIntensity;
         
         dummy.position.set(
           initialX * (1 - gatherEase),
           initialY * (1 - gatherEase),
           initialZ * (1 - gatherEase)
         );
-        dummy.rotation.set(time * 2, time * 2, time * 2);
-        dummy.scale.setScalar(size * (0.5 + gatherEase * 0.5));
+        dummy.rotation.set(time * 1, time * 1, time * 1);
+        dummy.scale.setScalar(size * (0.5 + gatherEase * 0.5) * pulse);
       } else {
         // EXPLOSION PHASE - particles blast outward (slower)
         const explodeTime = time - 0.3;
@@ -103,9 +102,9 @@ const Shards = ({ active, onComplete }: { active: boolean; onComplete: () => voi
         );
         
         // Slower rotation
-        dummy.rotation.x += rotationSpeed * 20 * delta; // Reduced from 50 to 20
-        dummy.rotation.y += rotationSpeed * 20 * delta;
-        dummy.rotation.z += rotationSpeed * 20 * delta;
+        dummy.rotation.x += rotationSpeed * 10 * delta; // Reduced from 20 to 10
+        dummy.rotation.y += rotationSpeed * 10 * delta;
+        dummy.rotation.z += rotationSpeed * 10 * delta;
         
         // Slight scale variation
         dummy.scale.setScalar(size * (1 + Math.sin(explodeTime * 10) * 0.2));
@@ -127,15 +126,47 @@ const Shards = ({ active, onComplete }: { active: boolean; onComplete: () => voi
     <instancedMesh ref={meshRef} args={[undefined, undefined, COUNT]}>
       <boxGeometry args={[0.5, 0.5, 0.5]} />
       <meshStandardMaterial 
-        roughness={0.05} 
-        metalness={0.95}
-        emissive="#ff0000"
-        emissiveIntensity={0.5}
+        roughness={0.2} 
+        metalness={0.1}
       />
     </instancedMesh>
   );
 };
 
+
+const PulsingLights = () => {
+  const light1Ref = useRef<THREE.PointLight>(null);
+  const light2Ref = useRef<THREE.PointLight>(null);
+  const light3Ref = useRef<THREE.PointLight>(null);
+  const light4Ref = useRef<THREE.PointLight>(null);
+  const spotLightRef = useRef<THREE.SpotLight>(null);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    if (time < 0.3) {
+      const gatherProgress = time / 0.3;
+      const pulseSpeed = 8 + gatherProgress * 12;
+      const pulseIntensity = 0.15 + gatherProgress * 0.25;
+      const pulse = 1 + Math.sin(time * pulseSpeed) * pulseIntensity;
+      
+      if (light1Ref.current) light1Ref.current.intensity = 2 * pulse;
+      if (light2Ref.current) light2Ref.current.intensity = 1.5 * pulse;
+      if (light3Ref.current) light3Ref.current.intensity = 8 * pulse;
+      if (light4Ref.current) light4Ref.current.intensity = 3 * pulse;
+      if (spotLightRef.current) spotLightRef.current.intensity = 5 * pulse;
+    }
+  });
+
+  return (
+    <>
+      <pointLight ref={light1Ref} position={[10, 10, 10]} intensity={2} color="#ff0000" />
+      <pointLight ref={light2Ref} position={[-10, -10, -10]} intensity={1.5} color="#ffffff" />
+      <pointLight ref={light3Ref} position={[0, 0, 0]} intensity={8} color="#ff0000" distance={15} decay={2} />
+      <pointLight ref={light4Ref} position={[5, -5, 5]} intensity={3} color="#ff6600" distance={12} />
+      <spotLight ref={spotLightRef} position={[0, 10, 0]} angle={0.5} penumbra={0.5} intensity={5} color="#ff0000" castShadow />
+    </>
+  );
+};
 
 const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const [active, setActive] = useState(true);
@@ -151,12 +182,8 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
         <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={75} />
         <color attach="background" args={['#000000']} />
         
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={2} color="#ff0000" />
-        <pointLight position={[-10, -10, -10]} intensity={1.5} color="#ffffff" />
-        <pointLight position={[0, 0, 0]} intensity={8} color="#ff0000" distance={15} decay={2} />
-        <pointLight position={[5, -5, 5]} intensity={3} color="#ff6600" distance={12} />
-        <spotLight position={[0, 10, 0]} angle={0.5} penumbra={0.5} intensity={5} color="#ff0000" castShadow />
+        <ambientLight intensity={0.8} />
+        <PulsingLights />
 
         <Suspense fallback={null}>
           <Shards active={active} onComplete={handleComplete} />
