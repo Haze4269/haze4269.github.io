@@ -2,23 +2,23 @@
   "lastUpdated": "2:24 am 11/20/2025",
   "movies": [
     {
-      "name": "Movie 1",
-      "genre": "Genre",
+      "name": "Coraline",
+      "genre": "Dark Fantasy",
       "description": "Description here"
     },
     {
-      "name": "Movie 2",
-      "genre": "Genre",
+      "name": "Donnie Darko",
+      "genre": "Phycological Thriller",
       "description": "Description here"
     },
     {
-      "name": "Movie 3",
-      "genre": "Genre",
+      "name": "MAMA",
+      "genre": "Supernatural Horror",
       "description": "Description here"
     },
     {
-      "name": "Movie 4",
-      "genre": "Genre",
+      "name": "Terrifier 2",
+      "genre": "Extreme Slasher Horror",
       "description": "Description here"
     }
   ]
