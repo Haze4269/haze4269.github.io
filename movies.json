@@ -4,22 +4,22 @@
     {
       "name": "Coraline",
       "genre": "Dark Fantasy",
-      "description": "Description here"
+      "description": "This movie is very nostalgic, and was a big part of my childhood."
     },
     {
       "name": "Donnie Darko",
       "genre": "Phycological Thriller",
-      "description": "Description here"
+      "description": "I have always like this movie because, it's not like a lot of other movies, I love the story."
     },
     {
       "name": "MAMA",
       "genre": "Supernatural Horror",
-      "description": "Description here"
+      "description": "This movie is definietly not what I was expecting it to be when I first watched it. But it is an amazing movie, even though it's very sad."
     },
     {
       "name": "Terrifier 2",
       "genre": "Extreme Slasher Horror",
-      "description": "Description here"
+      "description": "This movie need no explanation.."
     }
   ]
 }
