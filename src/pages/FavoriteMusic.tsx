@@ -76,14 +76,19 @@ const FavoriteMusic = () => {
             ) : songsData ? (
               <div className="grid sm:grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4">
                 {songsData.songs.map((song, index) => (
-                  <div key={index} className="bg-card rounded-lg retro-dashed p-3 md:p-4 space-y-2 border-2 border-hell-red/30 hover:border-hell-red transition-colors">
+                  <a
+                    key={index}
+                    href={song.description}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-card rounded-lg retro-dashed p-3 md:p-4 space-y-2 border-2 border-hell-red/30 hover:border-hell-red transition-colors cursor-pointer block"
+                  >
                     <div className="flex items-center gap-2">
                       <Heart className="w-3 h-3 md:w-4 md:h-4 text-hell-red flex-shrink-0" />
                       <h3 className="font-bold uppercase text-hell-red tracking-wide text-sm md:text-base">{song.name}</h3>
                     </div>
                     <p className="text-xs text-muted-foreground font-semibold uppercase">{song.artist}</p>
-                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-semibold">{song.description}</p>
-                  </div>
+                  </a>
                 ))}
               </div>
             ) : (
